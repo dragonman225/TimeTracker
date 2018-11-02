@@ -1,0 +1,72 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Chrome, Firefox OS and Opera Status Bar Color -->
+  <meta name="theme-color" content="#FFB900">
+  <link rel="stylesheet" type="text/css" href="css/base.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/uframe.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/eventHandler.js"></script>
+  <script src="js/app.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div id="sideBar" class="side-bar">
+      <div id="sidebarClose" class="side-bar-item">
+        <h5>&#10005;&nbsp;</h5>
+      </div>
+      <div id="loggerEntry" class="side-bar-item">
+        <h6>Tracker</h6>
+      </div>
+      <div id="historyEntry" class="side-bar-item">
+        <h6>History</h6>
+      </div>
+    </div>
+    <div class="title-bar">
+      <div id="sidebarOpen" class="title-item">
+        <h5>&#9776;&nbsp;</h5>
+      </div>
+      <div class="title-item">
+        <h5 id="appName"></h5>
+      </div>
+    </div>
+    <div id="loggerView" class="content">
+      <div class="logger">
+        <div class="logger-ctrl">
+          <h3 id="status"></h3>
+          <div class="logger-input">
+            <textarea id="eventUserInput" rows="1" maxlength="30" value=""></textarea>
+          </div>
+          <div class="logger-timer">
+            <h6 id="timer"></h6>
+          </div>
+          <div class="logger-btn">
+            <button id="setBtn" class="btn-draw"></button>
+          </div>
+        </div>
+      </div>
+      <div class="rec">
+        <div id="activityList" class="rec-list">
+        </div>
+      </div>
+    </div>
+    <div id="historyView" class="content">
+      <div class="keep-out"></div>
+      <div class="history-scroll">
+        <div id="historyList" class="history"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

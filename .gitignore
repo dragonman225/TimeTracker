@@ -1,0 +1,16 @@
+# Node.js
+/node_modules
+package-lock.json
+
+#Cordova
+/plugins
+/platforms
+
+# Logs
+*.log
+*.tmp
+*.tmp.*
+log.txt
+
+# OS X
+.DS_Store

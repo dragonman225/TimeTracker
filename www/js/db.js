@@ -1,9 +1,67 @@
 /* Database Helper
 Planned to implement for two backends:
   - SQLite for Android / iOS
-  - LocalStorage for browser
+  - IndexedDB for browser
 With a proxy that provides same call interface
 */
+
+var dbHelper = (function(dbProxy) {
+  var isMobile = -1
+  var checkMobile = function() {
+    if (isMobile === -1) {
+      switch (state.cordova) {
+        case 0:
+          isMobile = 0
+          return false
+        case 1:
+          isMobile = 1
+          return true
+        default:
+          Util.logDebug({
+            type: 'Error',
+            message: 'state.cordova is not set'
+          })
+      }
+    } else if (isMobile === 1) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  dbProxy.writeHistory = function(history) {
+    if (checkMobile()) {
+      sqliteHelper.writeHistory(history)
+    } else {
+
+    }
+  }
+
+  dbProxy.readHistory = function(callback) {
+    if (checkMobile()) {
+      sqliteHelper.readHistory(callback)
+    } else {
+
+    }
+  }
+
+  dbProxy.writeCache = function(tmpState) {
+    if (checkMobile()) {
+      sqliteHelper.writeCache(tmpState)
+    } else {
+
+    }
+  }
+
+  dbProxy.readCache = function(callback) {
+    if (checkMobile()) {
+      sqliteHelper.readCache(callback)
+    } else {
+
+    }
+  }
+  return dbProxy;
+}(dbHelper || {}));
 
 var sqliteHelper = {
   writeHistory: function(history) {

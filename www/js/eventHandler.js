@@ -12,7 +12,7 @@ var handleSetBtn = function() {
     }
     var newLog = logger.stop()
     state.history.push(newLog)
-    sqliteHelper.writeHistory(newLog)
+    dbHelper.writeHistory(newLog)
     state.eventNameInput = ""
     growTextarea()
     renderHistoryList()
@@ -68,7 +68,7 @@ var handleEventName = function(e) {
         refresh(display)
       }
       if (state.logging) {
-        sqliteHelper.writeCache({
+        dbHelper.writeCache({
           eventNameInput: state.eventNameInput,
           logging: 1,
           startTime: logger.startTime
@@ -115,7 +115,7 @@ var handleActivityClick = function(e) {
     html: src.name
   }
   if (state.logging) {
-    sqliteHelper.writeCache({
+    dbHelper.writeCache({
       eventNameInput: state.eventNameInput,
       logging: 1,
       startTime: logger.startTime
@@ -129,7 +129,7 @@ var logger = {
   startTime: 0,
   start: function() {
     logger.startTime = Date.now()
-    sqliteHelper.writeCache({
+    dbHelper.writeCache({
       eventNameInput: state.eventNameInput,
       logging: 1,
       startTime: logger.startTime
@@ -138,7 +138,7 @@ var logger = {
   },
   stop: function() {
     logger.pastTime = 0
-    sqliteHelper.writeCache({
+    dbHelper.writeCache({
       eventNameInput: "",
       logging: 0,
       startTime: ""

@@ -74,15 +74,13 @@ var interaction = {
 }
 
 var state = {
+  cordova: -1,
   logging: 0,
   sidebarOpen: 0,
   eventNameInput: "",
   history: [],
   userActivities: []
 }
-
-// Browser
-// document.addEventListener('DOMContentLoaded', appStart, false);
 
 function initHistory(data) {
   state.history = data
@@ -117,20 +115,45 @@ function restoreCache(data) {
   }
 }
 
-document.addEventListener('deviceready', function() {
-  db = window.sqlitePlugin.openDatabase({
-    name: 'history.db',
-    location: 'default',
-    androidDatabaseProvider: 'system'
-  });
-  sqliteHelper.readHistory(initHistory)
-  appStart()
-  sqliteHelper.readCache(restoreCache)
-}, false);
-
-function appStart() {
+function appStartUniversal() {
   initActivities(userData.userActivities)
   refresh(display)
   setup(interaction)
   logDebug({ type: 'INFO', message: 'app loaded' })
 }
+
+function appInitBrowser() {
+  appStartUniversal()
+}
+
+function appInitMobile() {
+  db = window.sqlitePlugin.openDatabase({
+    name: 'history.db',
+    location: 'default',
+    androidDatabaseProvider: 'system'
+  });
+  dbHelper.readHistory(initHistory)
+  appStartUniversal()
+  dbHelper.readCache(restoreCache)
+}
+
+function detectCordova() {
+  if (typeof cordova === 'undefined') {
+    state.cordova = 0
+    Util.logDebug({
+      type: 'Info',
+      message: 'Browser detected'
+    })
+    appInitBrowser()
+  } else {
+    state.cordova = 1
+    Util.logDebug({
+      type: 'Info',
+      message: 'Mobile detected'
+    })
+    // 'deviceready' event is only available and necessary with cordova
+    document.addEventListener('deviceready', appInitMobile, false)
+  }
+}
+
+document.addEventListener('DOMContentLoaded', detectCordova, false);

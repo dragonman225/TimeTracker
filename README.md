@@ -9,7 +9,7 @@
 ### Planned Features
 
 * Export history to JSON
-* Edit History
+* Editable History Timeline
 * Graphical Statistics
 * Recommend Activity by Frequency and Current Time
 * Support Storing History in Browser
@@ -26,16 +26,24 @@
 
 * Android SDK, JDK, Gradle
 
-  Follow [Official Guide #Installing the Requirements](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#installing-the-requirements)
+  Follow [Android Platform Guide #Installing the Requirements](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#installing-the-requirements)
 
-##### Debug on real device
+##### Setup the Project
 
 1. `git clone https://github.com/dragonman225/TimeTracker.git`
 2. `cd TimeTracker`
 3. `cordova platform add android`
-4. Connect an Android phone with USB Debugging enabled to the computer.
-5. `cordova run android`
-6. Open `Chrome > Developer Tools > More Tools > Remote Devices`, choose your device to inspect.
+
+##### Build APK
+
+1. `cordova build android`
+2. Get APK in `platfroms/android/app/build/outputs/apk/debug`
+
+##### Debug on real device
+
+1. Connect an Android phone with USB Debugging enabled to the computer.
+2. `cordova run android`
+3. Open `Chrome > Developer Tools > More Tools > Remote Devices`, choose your device to inspect.
 
 ##### Build Notes
 
@@ -76,7 +84,14 @@
 ##### Requirements
 
 * Cordova
+
+  ```bash
+  $ npm install -g cordova
+  ```
+
 * Xcode
+
+  Follow [iOS Platform Guide](https://cordova.apache.org/docs/en/latest/guide/platforms/ios/)
 
 ### Develop for Browser
 

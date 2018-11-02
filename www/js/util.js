@@ -10,7 +10,7 @@ var Util = (function(util) {
   }
 
   // Throttle frequently called or time-consuming functions.
-  // - New instances with functions and throttling timeout.
+  // - Usage: 'new' instances with functions and throttling timeout.
   util.throttle = function(func, ms) {
     this.func = func
     this.ms = ms
@@ -25,9 +25,12 @@ var Util = (function(util) {
     }
   }
 
-  // JS Timestamp to Date Conversion
-  util.toDate = function(ts) {
-    return 'NI'
+  // Advanced console.log
+  util.logDebug = function(info) {
+    if (DEBUG) {
+      console.log('[' + basicEscape(info.type) + ']' + ' ' + basicEscape(info.message))
+      if (typeof info.dump !== 'undefined') console.log(info.dump)
+    }
   }
 
   return util;
@@ -45,5 +48,11 @@ var heavyFunc = new Util.throttle(function() {
 for (var i = 0; i < 10000; i += 1) {
   heavyFunc.run()
 }
+
+Util.logDebug({
+  type: 'Info',
+  message: 'test',
+  dump: {Anything: 'ok'}
+})
 
 */

@@ -30,7 +30,7 @@
 
 ##### Debug on real device
 
-1. `git clone`
+1. `git clone https://github.com/dragonman225/TimeTracker.git`
 2. `cd TimeTracker`
 3. `cordova platform add android`
 4. Connect an Android phone with USB Debugging enabled to the computer.
@@ -89,4 +89,4 @@
 
 > __This app is under heavy development and not ready for daily use.__
 
-* Android:
+* Android: [Release Page](https://github.com/dragonman225/TimeTracker/releases/)

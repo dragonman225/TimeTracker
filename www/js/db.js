@@ -2,7 +2,8 @@
 Planned to implement for two backends:
   - SQLite for Android / iOS
   - IndexedDB for browser
-With a proxy that provides same call interface
+With a proxy that provides same interface,
+planned to wrap as a class that can be init with configs
 */
 
 var dbHelper = (function(dbProxy) {

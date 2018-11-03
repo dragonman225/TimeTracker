@@ -1,23 +1,8 @@
 /* Micro DOM Manipulator */
-var DEBUG = true
+
 var displayCache = {
   initialized: false,
   storage: {}
-}
-
-function basicEscape(unsafeString) {
-  return unsafeString.replace(/\</g, '&lt;')
-    .replace(/\>/g, '&gt;')
-    .replace(/\"/g, '&quot;')
-    .replace(/\'/g, '&#x27')
-    .replace(/\//g, '&#x2F');
-}
-
-function logDebug(info) {
-  if (DEBUG) {
-    console.log('[' + basicEscape(info.type) + ']' + ' ' + basicEscape(info.message))
-    if (typeof info.dump !== 'undefined') console.log(info.dump)
-  }
 }
 
 // Deep object copy, normal '=' only sends reference
@@ -45,9 +30,9 @@ function render(displayChange) {
       var element = document.getElementById(index)
       if (typeof displayChange[index].html !== 'undefined') {
         if (element.nodeName === 'INPUT' || element.nodeName === 'TEXTAREA') {
-          element.value = basicEscape(displayChange[index].html)
+          element.value = Util.basicEscape(displayChange[index].html)
         } else {
-          element.innerHTML = basicEscape(displayChange[index].html)
+          element.innerHTML = Util.basicEscape(displayChange[index].html)
         }
       }
       if (typeof displayChange[index].class !== 'undefined' && displayChange[index].class.length > 0) {
@@ -63,17 +48,19 @@ function render(displayChange) {
       }
     } else if (typeof displayChange[index] === 'object' && displayChange[index].length >= 0) {
       var element = document.getElementById(index)
+      var fragment = document.createDocumentFragment();
       while (element.hasChildNodes()) {
         element.removeChild(element.lastChild);
       }
       displayChange[index].forEach(function(item) {
         var newNode = document.createElement("div")
-        newNode.innerHTML = basicEscape(item.html)
+        newNode.innerHTML = Util.basicEscape(item.html)
         newNode.classList.add(...item.class)
-        element.appendChild(newNode)
+        fragment.appendChild(newNode)
       })
+      element.appendChild(fragment)
     } else {
-      logDebug({
+      Util.logDebug({
         type: 'Error',
         message: 'incorrect displayChange format',
         dump: index
@@ -84,7 +71,7 @@ function render(displayChange) {
 
 function refresh(newDisplay) {
   if (typeof newDisplay === 'undefined') {
-    logDebug({
+    Util.logDebug({
       type: 'Error',
       message: 'undefined new display'
     })
@@ -104,7 +91,7 @@ function refresh(newDisplay) {
 
 function setup(interactionList) {
   if (typeof interactionList === 'undefined') {
-    logDebug({
+    Util.logDebug({
       type: 'Error',
       message: 'undefined interaction'
     })
@@ -125,7 +112,7 @@ function setup(interactionList) {
           element.children[i].addEventListener(interaction[i].type, interaction[i].handler)
         }
       } else {
-        logDebug({
+        Util.logDebug({
           type: 'Error',
           message: 'incorrect interaction format'
         })

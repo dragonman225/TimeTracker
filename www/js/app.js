@@ -13,6 +13,7 @@
 // 1. Each key in display object or interaction object correspond to an id with the same name in the DOM
 // 2. Prevent directly styling elements with id, use class only
 
+var DEBUG = true
 var db = null;
 
 var display = {
@@ -119,7 +120,7 @@ function appStartUniversal() {
   initActivities(userData.userActivities)
   refresh(display)
   setup(interaction)
-  logDebug({ type: 'INFO', message: 'app loaded' })
+  Util.logDebug({ type: 'Info', message: 'app loaded' })
 }
 
 function appInitBrowser() {

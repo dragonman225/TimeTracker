@@ -95,8 +95,6 @@
 
 ### Develop for Browser
 
-> *Currently browser support is broken, one needs to remove lines related to database operation to make it work.*
-
 1. Clone the project.
 2. Open `www/index.html` in browser
 

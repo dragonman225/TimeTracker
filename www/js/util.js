@@ -1,6 +1,8 @@
 var Util = (function(util) {
   var data = {
     colorClass: ['midnightblue', 'wisteria', 'pomegranate', 'pumpkin', 'belizehole', 'belizehole'],
+    day: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    month: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   }
 
   // Randomly return one of pre-defined classNames representing colors.
@@ -28,9 +30,29 @@ var Util = (function(util) {
   // Advanced console.log
   util.logDebug = function(info) {
     if (DEBUG) {
-      console.log('[' + basicEscape(info.type) + ']' + ' ' + basicEscape(info.message))
+      console.log('[' + util.basicEscape(info.type) + ']' + ' ' + util.basicEscape(info.message))
       if (typeof info.dump !== 'undefined') console.log(info.dump)
     }
+  }
+
+  // Escape special characters
+  util.basicEscape = function(unsafeString) {
+    return unsafeString.replace(/\</g, '&lt;')
+      .replace(/\>/g, '&gt;')
+      .replace(/\"/g, '&quot;')
+      .replace(/\'/g, '&#x27')
+      .replace(/\//g, '&#x2F');
+  }
+
+  // JS UTC Timestamp to Date
+  util.TStoDate = function(timestampStr) {
+    var ts = parseInt(timestampStr)
+    var myDate = new Date(ts)
+    var date = myDate.getDate()
+    var month = data.month[myDate.getMonth()]
+    var day = data.day[myDate.getDay()]
+    if (month < 10) month = '0' + month
+    return day + ', ' + month + ' ' + date
   }
 
   return util;

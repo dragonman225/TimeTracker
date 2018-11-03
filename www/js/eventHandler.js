@@ -49,7 +49,7 @@ var handleSidebarBtn = function() {
 var handleEventName = function(e) {
   switch (e.type) {
     case 'input':
-      state.eventNameInput = basicEscape(document.getElementById('eventUserInput').value)
+      state.eventNameInput = Util.basicEscape(document.getElementById('eventUserInput').value)
       growTextarea()
       break
     case 'focus':
@@ -87,7 +87,7 @@ var handleLoggerEntry = function() {
     class: ["hidden"]
   }
   display.appName = {
-    html: "Logger"
+    html: "Tracker"
   }
   refresh(display)
 }
@@ -188,7 +188,7 @@ var renderHistoryList = function() {
     }
     durationHuman += durationSec.toFixed(0).toString() + ' s '
     newHistoryList.push({
-      html: description + "\n" + durationHuman + "\n\n",
+      html: Util.TStoDate(list[i].startTime) + "\n" + description + "\n" + durationHuman + "\n",
       class: ["history-item"]
     })
   }

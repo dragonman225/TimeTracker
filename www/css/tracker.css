@@ -1,0 +1,94 @@
+.logger {
+  background-color: rgba(127,140,141 ,0.0);
+  display: flex;
+  flex: 60;
+  margin-top: 3em;
+  padding: 0.5em;
+}
+
+.logger-ctrl {
+  display: flex;
+  flex: 100;
+  flex-direction: column;
+  line-height: 1.6;
+  padding: 1em 10%;
+}
+
+.logger-input {
+  flex: 55;
+  position: relative;
+}
+
+.logger-input > input, .logger-input > textarea {
+  background: inherit;
+  bottom: 0.5em;
+  color: #fff;
+  font-size: 2em;
+  transition: border-bottom 0.1s ease-in-out;
+  width: 100%;
+  position: absolute;
+}
+
+.logger-input > textarea {
+  vertical-align: text-bottom;
+  resize: none;
+}
+
+.logger-input > input:focus, .logger-input > textarea:focus {
+  border-bottom: 2px solid #333;
+  outline: none;
+}
+
+.logger-timer {
+  flex: 45;
+  position: relative;
+}
+
+.logger-timer > h6 {
+  top: 0.5em;
+  position: absolute;
+}
+
+.logger-btn {
+  position: relative;
+}
+
+.btn-draw {
+  background: #3498db;
+  border-radius: 1.5em;
+  color: #fff;
+  width: 3em;
+  height: 3em;
+  right: 0;
+  bottom: 0;
+  transform: translateX(0.7em);
+  position: absolute;
+}
+
+.btn-draw:focus {
+  outline: none;
+}
+
+.rec {
+  background-color: rgba(236,240,241 ,0.38);
+  flex: 40;
+  max-height: 35%;
+  overflow-y: scroll;
+  padding: 0.5em;
+}
+
+.rec-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 2em;
+}
+
+.rec-item {
+  border-radius: 0.9em;
+  flex: 0 1 auto;
+  font-size: 0.9em;
+  margin: 0.4em 0.4em;
+  padding: 0.5em 0.7em;
+  word-wrap: break-word;
+}

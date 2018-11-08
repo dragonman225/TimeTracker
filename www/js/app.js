@@ -157,4 +157,4 @@ function detectCordova() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', detectCordova, false);
+document.addEventListener('DOMContentLoaded', detectCordova, false)

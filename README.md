@@ -28,6 +28,36 @@
 
   Follow [Android Platform Guide #Installing the Requirements](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#installing-the-requirements)
 
+  * Cheatsheet for Arch Linux
+
+    > Warning: The installation takes more than 30 minutes and needs to download hundreds of MBs of dependencies.
+  
+    Install `android-sdk` and `android-sdk-build-tools` from AUR. Then,
+
+    ```bash
+    sudo chown -R $USER:$USER /opt/android-sdk
+    ```
+    
+    Install Java and Gradle,
+    
+    ```bash
+    sudo pacman -S jdk8-openjdk gradle
+    archlinux-java set java-8-openjdk`
+    ```
+
+    Set environment variables,
+
+    ```bash
+    export JAVA_HOME=/usr/lib/jvm/default
+    export ANDROID_HOME=/opt/android-sdk
+    ```
+
+    Accept Android-SDK license, [reference](https://github.com/ionic-team/ionic-cli/issues/1726)
+
+    ```bash
+    $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-26"
+    ```
+
 ##### Setup the Project
 
 1. `git clone https://github.com/dragonman225/TimeTracker.git`
